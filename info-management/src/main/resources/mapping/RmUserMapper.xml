@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyh.infomanagement.dao.RmUserMapper">
+  <resultMap id="BaseResultMap" type="com.xyh.infomanagement.entity.RmUser">
+    <id column="ID_USER" jdbcType="VARCHAR" property="idUser" />
+    <result column="NAM_LOGIN" jdbcType="VARCHAR" property="namLogin" />
+    <result column="NAM_NAME" jdbcType="VARCHAR" property="namName" />
+    <result column="VLU_SEX" jdbcType="VARCHAR" property="vluSex" />
+    <result column="VLU_CERTIFICATE_TYPE" jdbcType="VARCHAR" property="vluCertificateType" />
+    <result column="ID_CERTIFICATE" jdbcType="VARCHAR" property="idCertificate" />
+    <result column="NUM_MOBILE_PHONE" jdbcType="VARCHAR" property="numMobilePhone" />
+    <result column="TXT_EMAIL" jdbcType="VARCHAR" property="txtEmail" />
+    <result column="DATE_USER_EXPIRE" jdbcType="DATE" property="dateUserExpire" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_USER, NAM_LOGIN, NAM_NAME, VLU_SEX, VLU_CERTIFICATE_TYPE, ID_CERTIFICATE, NUM_MOBILE_PHONE, 
+    TXT_EMAIL, DATE_USER_EXPIRE
+  </sql>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from rm_user
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rm_user
+    where ID_USER = #{idUser,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from rm_user
+    where ID_USER = #{idUser,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xyh.infomanagement.entity.RmUser">
+    insert into rm_user (ID_USER, NAM_LOGIN, NAM_NAME, 
+      VLU_SEX, VLU_CERTIFICATE_TYPE, ID_CERTIFICATE, 
+      NUM_MOBILE_PHONE, TXT_EMAIL, DATE_USER_EXPIRE
+      )
+    values (#{idUser,jdbcType=VARCHAR}, #{namLogin,jdbcType=VARCHAR}, #{namName,jdbcType=VARCHAR}, 
+      #{vluSex,jdbcType=VARCHAR}, #{vluCertificateType,jdbcType=VARCHAR}, #{idCertificate,jdbcType=VARCHAR}, 
+      #{numMobilePhone,jdbcType=VARCHAR}, #{txtEmail,jdbcType=VARCHAR}, #{dateUserExpire,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xyh.infomanagement.entity.RmUser">
+    insert into rm_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idUser != null">
+        ID_USER,
+      </if>
+      <if test="namLogin != null">
+        NAM_LOGIN,
+      </if>
+      <if test="namName != null">
+        NAM_NAME,
+      </if>
+      <if test="vluSex != null">
+        VLU_SEX,
+      </if>
+      <if test="vluCertificateType != null">
+        VLU_CERTIFICATE_TYPE,
+      </if>
+      <if test="idCertificate != null">
+        ID_CERTIFICATE,
+      </if>
+      <if test="numMobilePhone != null">
+        NUM_MOBILE_PHONE,
+      </if>
+      <if test="txtEmail != null">
+        TXT_EMAIL,
+      </if>
+      <if test="dateUserExpire != null">
+        DATE_USER_EXPIRE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idUser != null">
+        #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="namLogin != null">
+        #{namLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="namName != null">
+        #{namName,jdbcType=VARCHAR},
+      </if>
+      <if test="vluSex != null">
+        #{vluSex,jdbcType=VARCHAR},
+      </if>
+      <if test="vluCertificateType != null">
+        #{vluCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="idCertificate != null">
+        #{idCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="numMobilePhone != null">
+        #{numMobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="txtEmail != null">
+        #{txtEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dateUserExpire != null">
+        #{dateUserExpire,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xyh.infomanagement.entity.RmUser">
+    update rm_user
+    <set>
+      <if test="namLogin != null">
+        NAM_LOGIN = #{namLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="namName != null">
+        NAM_NAME = #{namName,jdbcType=VARCHAR},
+      </if>
+      <if test="vluSex != null">
+        VLU_SEX = #{vluSex,jdbcType=VARCHAR},
+      </if>
+      <if test="vluCertificateType != null">
+        VLU_CERTIFICATE_TYPE = #{vluCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="idCertificate != null">
+        ID_CERTIFICATE = #{idCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="numMobilePhone != null">
+        NUM_MOBILE_PHONE = #{numMobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="txtEmail != null">
+        TXT_EMAIL = #{txtEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dateUserExpire != null">
+        DATE_USER_EXPIRE = #{dateUserExpire,jdbcType=DATE},
+      </if>
+    </set>
+    where ID_USER = #{idUser,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xyh.infomanagement.entity.RmUser">
+    update rm_user
+    set NAM_LOGIN = #{namLogin,jdbcType=VARCHAR},
+      NAM_NAME = #{namName,jdbcType=VARCHAR},
+      VLU_SEX = #{vluSex,jdbcType=VARCHAR},
+      VLU_CERTIFICATE_TYPE = #{vluCertificateType,jdbcType=VARCHAR},
+      ID_CERTIFICATE = #{idCertificate,jdbcType=VARCHAR},
+      NUM_MOBILE_PHONE = #{numMobilePhone,jdbcType=VARCHAR},
+      TXT_EMAIL = #{txtEmail,jdbcType=VARCHAR},
+      DATE_USER_EXPIRE = #{dateUserExpire,jdbcType=DATE}
+    where ID_USER = #{idUser,jdbcType=VARCHAR}
+  </update>
+</mapper>
